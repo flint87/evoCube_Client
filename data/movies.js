@@ -101,7 +101,7 @@ var trailersKIZ = [{
 	"movieName": "Edge of Tomorrow",
 	"ovName": "Edge of Tomorrow",
 	"interalName": "edgeOfTomorrow",
-	"urlDE": "https://www.youtube.com/watch?v=SalUKTW6OXE",
+	"urlDE": "https://www.youtube.com/watch?v=oZcBls4IugA",
 	"urlOV": "https://www.youtube.com/watch?v=yUmSVcttXnI",
 	"imageURL": "http://www.filmfutter.com/wp-content/uploads/2014/05/EdgePoster1.jpg",
 	"ov": "Englisch",

@@ -1,0 +1,8 @@
+{
+	"comment": "you have to fill out all values manually!! server paramater refer to the webserver were the nodejs server is running. CubeLocation is the specific location where this client should belong to.",
+	"server": {
+		"ip": "178.77.68.72",
+		"portNumber": "3000"
+	},
+	"cubeLocation": "rechbauer"
+}
