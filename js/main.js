@@ -8,6 +8,7 @@ var fs = require('fs');
 var serverIP;
 var serverPort;
 var cubeLocation;
+var debugMode;
 
 //socket.io client side debug messages
 //localStorage.setItem('debug', "*");
@@ -24,6 +25,12 @@ function initClient() {
 		serverPort = config.server.portNumber;
 		cubeLocation = config.cubeLocation;
 		$("#infoTitle").html(config.welcomeMessage);
+		if(config.debug == "false"){
+			$("#playPause").hide(0);
+			$("#fullscreen").hide(0);
+			$("#kiosk").hide(0);
+			$("#status").hide(0);
+		}
 		connect();
 	});
 
