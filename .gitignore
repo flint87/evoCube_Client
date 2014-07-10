@@ -5,4 +5,6 @@ nw.pak
 libGLESv2.dll
 libEGL.dll
 icudt.dll
+package.json
+clientConfig.json
 
