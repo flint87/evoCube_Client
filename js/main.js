@@ -23,6 +23,7 @@ function initClient() {
 		serverIP = config.server.ip;
 		serverPort = config.server.portNumber;
 		cubeLocation = config.cubeLocation;
+		$("#infoTitle").html(config.welcomeMessage);
 		connect();
 	});
 
