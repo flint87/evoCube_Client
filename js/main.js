@@ -17,7 +17,6 @@ localStorage.setItem('debug', "");
 var trailerIsRunning = false;
 
 var trailers;
-var testContent = "<table border=\"1\">     <thead>        <tr>            <th colspan=\"3\">Movie Title</th>        </tr>    </thead>    <tbody>        <tr>            <td rowspan=\"9\">                <img src=\"http://www.moviepilot.de/files/images/movie/file/10970951/grand-budapest-hotel-poster-2_article.jpg\" style=\"height:auto;\"></img>            </td>            <td>Jahr:</td>            <td>2014</td>        </tr>        <tr>            <td>Originalname:</td>            <td>2014</td>        </tr>        <tr>            <td>Originalton</td>            <td>Englisch</td>        </tr>        <tr>            <td>Land:</td>            <td>USA</td>        </tr>        <tr>            <td>Genre</td>            <td>Drama, Komödie</td>        </tr>         <tr>            <td>Stimmung</td>            <td>düster, makaber</td>        </tr>         <tr>            <td>Verfügbarkeit</td>            <td>Videothek</td>        </tr>         <tr>            <td>Regisseur</td>            <td>Wes Anderson</td>        </tr>         <tr>            <td>Schauspieler</td>            <td>Ralph Fiennes, F. Murray Abrahams</td>        </tr>    </tbody></table>";
 
 function initClient() {
 	fs.readFile('./clientConfig.json', 'utf-8', function(error, contents) {
@@ -230,14 +229,65 @@ function loadFile() {
 	$.get("http://" + serverIP + ":" + serverPort + "/data/" + cubeLocation + ".json", function(data) {
 		writeLog("File loaded successfully");
 		trailers = data;
+		var innerContent;
+		for (var u = 0; u < trailers.length; u++) {
+			innerContent = "<table border=\"1\"><thead><tr><th colspan=\"3\" style=\"text-align:center\"><h1>" + 
+			trailers[u].movieName + "</h1></th></tr></thead><tbody><tr><td rowspan=\"9\" style=\"text-align:left; vertical-align:top;\"><img class=\"moviePoster\" src=\"" + 			
+			trailers[u].imageURL + "\"></img></td><td class=\"tableHeader\"><p>Jahr:</p></td><td class=\"tableContent\"><p>" + 
 
-		for (u = 0; u < trailers.length; u++) {
+			trailers[u].year + "</p></td></tr><tr><td class=\"tableHeader\"><p>Originalname:</p></td><td class=\"tableContent\"><p" + 
+			trailers[u].ovName + "</p></td></tr><tr><td class=\"tableHeader\"><p>Originalton:</p></td><td class=\"tableHeader\"><p" + 
+			trailers[u].ov;
+
+			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\"><p>Land:</p></td><td class=\"tableContent\"><p>";
+
+			for (z = 0; z < trailers[u].country.length; z++) {
+				if(z !== trailers[u].country.length - 1){
+					innerContent = innerContent + trailers[u].country[z] + ",<br>";
+				}else{
+					innerContent = innerContent + trailers[u].country[z];
+				}				
+			}
+
+			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\"><p>Genre:</p></td><td class=\"tableContent\"><p>";
+
+			for (z = 0; z < trailers[u].genre.length; z++) {
+				if(z !== trailers[u].genre.length - 1){
+					innerContent = innerContent + trailers[u].genre[z] + ",<br>";
+				}else{
+					innerContent = innerContent + trailers[u].genre[z];
+				}				
+			}
+
+			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\"><p>Stimmung:</p></td><td class=\"tableContent\"><p>";
+
+			for (z = 0; z < trailers[u].mood.length; z++) {
+				if(z !== trailers[u].mood.length - 1){
+					innerContent = innerContent + trailers[u].mood[z] + ",<br>";
+				}else{
+					innerContent = innerContent + trailers[u].mood[z];
+				}				
+			}
+
+			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\"><p>Verfügbarkeit:</p></td><td class=\"tableContent\"><p>" + 
+			trailers[u].available + "</p></td></tr><tr><td class=\"tableHeader\"><p>Regisseur:</p></td><td class=\"tableContent\"><p>" + 
+			trailers[u].director + "</p></td></tr><tr><td class=\"tableHeader\"><p>Schauspieler:</p></td><td class=\"tableContent\"><p>";
+
+			for (z = 0; z < trailers[u].actors.length; z++) {
+				if(z !== trailers[u].mood.length - 1){
+					innerContent = innerContent + trailers[u].actors[z] + ",<br>";
+				}else{
+					innerContent = innerContent + trailers[u].actors[z];
+				}				
+			}
+			innerContent = innerContent + "</p></td></tr></tbody></table>";
+
 			if (u === 0) {
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\" class=\"active\"></li>");
-				$("#carouselItems").append("<div class=\"item active\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><h1>" + testContent + "</h1></div></div>");
+				$("#carouselItems").append("<div class=\"item active\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><h1>" + innerContent + "</h1></div></div>");
 			} else {
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\"></li>");
-				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><h1>" + testContent + "</h1></div></div>");
+				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><h1>" + innerContent + "</h1></div></div>");
 
 			}
 

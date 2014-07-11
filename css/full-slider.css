@@ -4,8 +4,8 @@ html, body {
 }
 
 div.myCarouselContent {
-	padding-right: 15%;
-    padding-left: 15%;
+	padding-right: 12%;
+    padding-left: 12%;
     padding-top: 5%;
     padding-bottom: 5%;
     width:100%;
@@ -36,6 +36,24 @@ div.myCarouselContent {
 .section {
 	margin: 50px 0;
 }
+
+.tableHeader{
+	width: 20%;
+	text-align:left;
+	vertical-align:top;
+	color: #000000;
+	font-size: 70%;
+}
+.tableContent{
+	width: 40%;
+	text-align:left;
+	vertical-align:top;
+	color: #000000;
+	font-size: 70%;
+}
+.moviePoster{
+	width:100%;
+	height:auto;
 
 footer {
 	margin: 50px 0;
