@@ -17,6 +17,7 @@ localStorage.setItem('debug', "");
 var trailerIsRunning = false;
 
 var trailers;
+var testContent = "<table border=\"1\">     <thead>        <tr>            <th colspan=\"3\">Movie Title</th>        </tr>    </thead>    <tbody>        <tr>            <td rowspan=\"9\">                <img src=\"http://www.moviepilot.de/files/images/movie/file/10970951/grand-budapest-hotel-poster-2_article.jpg\" style=\"height:auto;\"></img>            </td>            <td>Jahr:</td>            <td>2014</td>        </tr>        <tr>            <td>Originalname:</td>            <td>2014</td>        </tr>        <tr>            <td>Originalton</td>            <td>Englisch</td>        </tr>        <tr>            <td>Land:</td>            <td>USA</td>        </tr>        <tr>            <td>Genre</td>            <td>Drama, Komödie</td>        </tr>         <tr>            <td>Stimmung</td>            <td>düster, makaber</td>        </tr>         <tr>            <td>Verfügbarkeit</td>            <td>Videothek</td>        </tr>         <tr>            <td>Regisseur</td>            <td>Wes Anderson</td>        </tr>         <tr>            <td>Schauspieler</td>            <td>Ralph Fiennes, F. Murray Abrahams</td>        </tr>    </tbody></table>";
 
 function initClient() {
 	fs.readFile('./clientConfig.json', 'utf-8', function(error, contents) {
@@ -25,7 +26,7 @@ function initClient() {
 		serverPort = config.server.portNumber;
 		cubeLocation = config.cubeLocation;
 		$("#infoTitle").html(config.welcomeMessage);
-		if(config.debug == "false"){
+		if (config.debug == "false") {
 			$("#playPause").hide(0);
 			$("#fullscreen").hide(0);
 			$("#kiosk").hide(0);
@@ -75,13 +76,16 @@ function connect() {
 	//write secret to screen and set timer to hide it again
 	socket.on("setSecret", function(secret) {
 		$("#secret").html(secret);
+		$('#myModal').modal();
 		setTimeout(function() {
 			$("#secret").html("");
+			$('#myModal').modal('hide');
 		}, 20000);
 	});
 
 	socket.on("hideSecret", function() {
 		$("#secret").html("");
+		$('#myModal').modal('hide');
 	});
 
 	socket.on("playPause", function() {
@@ -110,12 +114,14 @@ function connect() {
 	socket.on("hideCode", function() {
 		$("#secret").html("");
 		writeLog("Hide code received");
+		$('#myModal').modal('hide');
 	});
 
 	//server has an updated video playlist
 	socket.on("updatePlaylist", function(fn) {
-		loadFile();
-		fn();
+		location.reload();
+		//loadFile();
+		//fn();
 	});
 
 	//returns true or false depenting if a trailer is played at the moment or not
@@ -155,7 +161,7 @@ function playerStartedEventHandler(myEvent) {
 	vlc.video.fullscreen = true;
 	trailerIsRunning = true;
 	setTimeout(function() {
-		setVolume(50);
+		setVolume(100);
 
 	}, 1000);
 }
@@ -224,6 +230,23 @@ function loadFile() {
 	$.get("http://" + serverIP + ":" + serverPort + "/data/" + cubeLocation + ".json", function(data) {
 		writeLog("File loaded successfully");
 		trailers = data;
+
+		for (u = 0; u < trailers.length; u++) {
+			if (u === 0) {
+				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\" class=\"active\"></li>");
+				$("#carouselItems").append("<div class=\"item active\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><h1>" + testContent + "</h1></div></div>");
+			} else {
+				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\"></li>");
+				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><h1>" + testContent + "</h1></div></div>");
+
+			}
+
+
+		}
+
+		$('.carousel').carousel({
+			interval: 5000 //changes the speed
+		});
 		//console.log(trailers);
 	}).fail(function() {
 		writeLog("Error loading trailer file!");

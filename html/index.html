@@ -1,35 +1,81 @@
-<!DOCTYPE html >
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<html >
-	<head >
-	<title > evoCube Video Client </title>
-	<script src="../node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
-	<script src="../data/movies.js"></script>		
-	<script src="../js/main.js"></script>	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <!-- Add custom CSS here -->
+    <link href="../css/full-slider.css" rel="stylesheet">
+    <!-- JavaScript -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>    
+    <script src="../js/main.js"></script>
+    <style type="text/css">    
+  </style>
 </head>
-	<body onload="initClient()">
-	<h1 id="infoTitle"></h1>
-	<div> <p id="status"> Waiting for input</p > </div>
-	<br>
-	<div> <p id="random"> </p > </div>
-	<br>
-	<embed type="application/x-vlc-plugin" pluginspage="http: //www.videolan.org"
-			width = "0"
-			height = "0"
-			id = "vlc"
-			name = "video"
-			text = "TEST"
-			branding = "false"
-			bgcolor = "#000000"
-			controls = "false" >
-	</embed>
-	<button id="playPause" style="display:none;" onclick="togglePause()">Play/Pause </button> 
-	<button style="display:none;" id="fullscreen" onClick="fullScreen()">Fullscreen</button > <br >
-	<button style="display:none;"id="kiosk" onClick="toggleKioskmode()">Toggle Kiosk Mode</button > <br >
-	<p id="secret"> Secret should be here</p>
+<body onload="initClient()">
+    <embed type="application/x-vlc-plugin" pluginspage="http: //www.videolan.org"
+            width = "0"
+            height = "0"
+            id = "vlc"
+            name = "video"
+            text = "TEST"
+            branding = "false"
+            bgcolor = "#000000"
+            controls = "false" >
+    </embed>
+    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation" >
+        <div class="container">
+            <div class="navbar-header">                
+                <a class="navbar-brand" id="infoTitle" href="#"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" id="status"></a>           
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-	 
-	</body>
+    <div id="myCarousel" class="carousel slide" >
+        <!-- Indicators -->
+        <ol class="carousel-indicators" id="movieCarousel">
+                     
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" id="carouselItems" >
+        <table>
+            
+        </table>
+                       
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            
+        </a>
+
+        
+    </div> 
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">              
+              <div class="modal-body">
+              <h1 style="text-align:center" class="modal-title" id="myModalLabel">Bestätigungsnummer</h1>
+                <h2 style="text-align:center" id="secret"><h2>
+              </div>
+            </div>
+        </div>
+    </div>  
+
+</body>
+
 </html>
