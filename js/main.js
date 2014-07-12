@@ -18,6 +18,9 @@ var trailerIsRunning = false;
 
 var trailers;
 
+var firstConnect = true;
+var firstReconnect = true;
+
 function initClient() {
 	fs.readFile('./clientConfig.json', 'utf-8', function(error, contents) {
 		var config = JSON.parse(contents);
@@ -53,11 +56,12 @@ function connect() {
 	socket.on("connect", function() {
 		$("#status").html("Connected to Server");
 		writeLog("CONNECTED TO SERVER");
+		firstReconnect = true;
 		//give the server a few moments to init before registering
 		setTimeout(function() {
 			registerToServer();
 
-		}, 3000);
+		}, 1000);
 
 	});
 
@@ -67,6 +71,12 @@ function connect() {
 
 	socket.on("reconnecting", function(nextRetry) {
 		$("#status").html("Reconnecting in " + nextRetry + " milliseconds");
+		//make sure that only one reconnecting attempt is logged
+		if(firstReconnect){
+			saveTrackingMessage(cubeLocation, "connectionEvent", "unexpectedReconnect", serverIP + ":" + serverPort); 	
+			firstReconnect = false;
+		}
+		
 	});
 	socket.on("reconnect_failed", function() {
 		$("#status").html("Reconnect failed");
@@ -215,7 +225,10 @@ function registerToServer() {
 	writeLog("Trying to register at the server");
 	socket.emit("videoClientregister", cubeLocation, function(message) {
 		if (message) {
-			loadFile();
+			if(firstConnect){
+				loadFile();
+				firstConnect = false;
+			}			
 			writeLog("Video Client successfully registered to server");
 		} else {
 			writeLog("Server not rdy at the moment. Pls try again later.");
@@ -231,13 +244,14 @@ function loadFile() {
 		trailers = data;
 		var innerContent;
 		for (var u = 0; u < trailers.length; u++) {
-			innerContent = "<table border=\"1\"><thead><tr><th colspan=\"3\" style=\"text-align:center\"><h1>" + 
-			trailers[u].movieName + "</h1></th></tr></thead><tbody><tr><td rowspan=\"9\" style=\"text-align:left; vertical-align:top;\"><img class=\"moviePoster\" src=\"" + 			
+			innerContent = "<table border=\"0\"><thead><tr><th colspan=\"3\" class=\"movieTitleHeader\"><h1>" + 
+			trailers[u].movieName + "</h1></th></tr></thead><tbody><tr><td rowspan=\"9\" class=\"imageDiv\" ><img class=\"moviePoster\" src=\"" + 			
 			trailers[u].imageURL + "\"></img></td><td class=\"tableHeader\"><p>Jahr:</p></td><td class=\"tableContent\"><p>" + 
 
-			trailers[u].year + "</p></td></tr><tr><td class=\"tableHeader\"><p>Originalname:</p></td><td class=\"tableContent\"><p" + 
-			trailers[u].ovName + "</p></td></tr><tr><td class=\"tableHeader\"><p>Originalton:</p></td><td class=\"tableHeader\"><p" + 
+			trailers[u].year + "</p></td></tr><tr><td class=\"tableHeader\"><p>Originalname:</p></td><td class=\"tableContent\"><p>" + 
+			trailers[u].ovName + "</p></td></tr><tr><td class=\"tableHeader\"><p>Originalton:</p></td><td class=\"tableContent\"><p>" + 
 			trailers[u].ov;
+			
 
 			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\"><p>Land:</p></td><td class=\"tableContent\"><p>";
 
@@ -270,7 +284,6 @@ function loadFile() {
 			}
 
 			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\"><p>Verfügbarkeit:</p></td><td class=\"tableContent\"><p>" + 
-			trailers[u].available + "</p></td></tr><tr><td class=\"tableHeader\"><p>Regisseur:</p></td><td class=\"tableContent\"><p>" + 
 			trailers[u].director + "</p></td></tr><tr><td class=\"tableHeader\"><p>Schauspieler:</p></td><td class=\"tableContent\"><p>";
 
 			for (z = 0; z < trailers[u].actors.length; z++) {
@@ -280,28 +293,67 @@ function loadFile() {
 					innerContent = innerContent + trailers[u].actors[z];
 				}				
 			}
-			innerContent = innerContent + "</p></td></tr></tbody></table>";
+			innerContent = innerContent + "</p></td></tr><tr><td colspan=\"2\" class=\"tableContent\" style=\"text-align:center; width:100%\"><p> " + 
+			trailers[u].available + "</p></td></tr></tbody></table>";
 
 			if (u === 0) {
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\" class=\"active\"></li>");
-				$("#carouselItems").append("<div class=\"item active\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><h1>" + innerContent + "</h1></div></div>");
+				$("#carouselItems").append("<div class=\"item active\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\">" + innerContent + "<p class=\"anouncer\">Ticketermäßigung für alle Teilnehmer</p></div></div>");
 			} else {
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\"></li>");
-				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><h1>" + innerContent + "</h1></div></div>");
+				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\">" + innerContent + "<p class=\"anouncer\">Ticketermäßigung für alle Teilnehmer</p></div></div>");
 
 			}
-
+			//$("#carouselItems").append("<br><h1>TEST CONTENT</h1>");
 
 		}
 
 		$('.carousel').carousel({
 			interval: 5000 //changes the speed
 		});
+
+		saveTrackingMessage(cubeLocation, "connectionEvent", "successfullyRegisteredToServer", serverIP + ":" + serverPort);
 		//console.log(trailers);
 	}).fail(function() {
 		writeLog("Error loading trailer file!");
 	});
 
+}
+
+//save new tracking message to file
+function saveTrackingMessage(locationName, eventType, message, parameter) {
+	console.log("I WANT TO SAVE A TRACKING MESSAGE");
+	fs.readFile("./videoClientLog.csv", "utf8", function(err, data) {
+		if (err) {
+			console.log("Reading error for tracking file");
+			console.log(err);
+		} else {
+			data = data + getTimeStamp() + ";" + locationName + ";" + eventType + ";" + message + ";" + parameter + "\n";
+			fs.writeFile("./videoClientLog.csv", data, "utf8", function(err) {
+				if (err) {
+					console.log(err);
+				} else {
+					//console.log("Tracking messages written");
+				}
+			});
+		}
+	});
+}
+
+//get timestamp for the log file
+function getTimeStamp() {
+	var hours = new Date().getHours();
+	var minutes = new Date().getMinutes();
+	var seconds = new Date().getSeconds();
+	var year = new Date().getFullYear();
+	var month = new Date().getMonth() + 1;
+	month = (month < 10 ? "0" : "") + month;
+	var day = new Date().getDate();
+	day = (day < 10 ? "0" : "") + day;
+	if (hours < 10) hours = "0" + hours;
+	if (minutes < 10) minutes = "0" + minutes;
+	if (seconds < 10) seconds = "0" + seconds;
+	return day + "." + month + "." + year + " " + hours + ":" + minutes + ":" + seconds;
 }
 
 //logging with timestap
