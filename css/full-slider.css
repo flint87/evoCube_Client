@@ -23,6 +23,12 @@ html, body {
 	margin: 50px 0;
 }
 
+.moviePoster{
+	height:70vh;
+	width:auto;	
+	
+}
+
 footer {
 	margin: 50px 0;
 }
