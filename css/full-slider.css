@@ -39,15 +39,16 @@ html, body {
 
 .tableHeader{
 	text-align:left;
+	font-weight: bold
 	vertical-align:top;
 	color: #000000;
 	font-size: 2vh;
-	padding-left:1.2vw;
+	padding-left:1.2vw;	
 	
 }
 .tableContent{
 	text-align:left;
-	font-weight: 500;
+	font-weight: bold
 	vertical-align:top;
 	color: #000000;
 	font-size: 2vh;
@@ -57,7 +58,7 @@ html, body {
 
 .anouncer{
 	padding-top:4vh;
-	padding-bottom:4vh;
+	padding-bottom:2vh;
 	font-size: 36px;
 	font-size: 150%;
 	font-weight: 500;
