@@ -248,8 +248,8 @@ function loadFile() {
 			trailers[u].movieName + "</h1></th></tr></thead><tbody><tr><td rowspan=\"9\" class=\"imageDiv\" ><img class=\"moviePoster\" src=\"" + 			
 			trailers[u].imageURL + "\"></img></td><td class=\"tableHeader\"><p>Jahr:</p></td><td class=\"tableContent\"><p>" + 
 
-			trailers[u].year + "</p></td></tr><tr><td class=\"tableHeader\"><p>Originalname:</p></td><td class=\"tableContent\"><p>" + 
-			trailers[u].ovName + "</p></td></tr><tr><td class=\"tableHeader\"><p>Originalton:</p></td><td class=\"tableContent\"><p>" + 
+			trailers[u].year + "</p></td></tr><tr><td class=\"tableHeader\"><p>OV Name:</p></td><td class=\"tableContent\"><p>" + 
+			trailers[u].ovName + "</p></td></tr><tr><td class=\"tableHeader\"><p>OV Sprache:</p></td><td class=\"tableContent\"><p>" + 
 			trailers[u].ov;
 			
 
@@ -277,18 +277,18 @@ function loadFile() {
 
 			for (z = 0; z < trailers[u].mood.length; z++) {
 				if(z !== trailers[u].mood.length - 1){
-					innerContent = innerContent + trailers[u].mood[z] + ",<br>";
+					innerContent = innerContent + trailers[u].mood[z] + ", ";
 				}else{
 					innerContent = innerContent + trailers[u].mood[z];
 				}				
 			}
 
-			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\"><p>Verfügbarkeit:</p></td><td class=\"tableContent\"><p>" + 
-			trailers[u].director + "</p></td></tr><tr><td class=\"tableHeader\"><p>Schauspieler:</p></td><td class=\"tableContent\"><p>";
+			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\"><p>Regisseur:</p></td><td class=\"tableContent\"><p>" + 
+			trailers[u].director + "</p></td></tr><tr><td class=\"tableHeader\"><p>Schausp.:</p></td><td class=\"tableContent\"><p>";
 
 			for (z = 0; z < trailers[u].actors.length; z++) {
 				if(z !== trailers[u].mood.length - 1){
-					innerContent = innerContent + trailers[u].actors[z] + ",<br>";
+					innerContent = innerContent + trailers[u].actors[z] + ", ";
 				}else{
 					innerContent = innerContent + trailers[u].actors[z];
 				}				

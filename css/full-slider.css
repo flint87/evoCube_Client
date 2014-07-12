@@ -1,5 +1,6 @@
 html, body {
 	height:100%;
+	overflow:hidden;
 }
 
 .carousel,
@@ -23,10 +24,43 @@ html, body {
 	margin: 50px 0;
 }
 
+
+.movieTitleHeader{
+	text-align:center;
+	padding-bottom:20px;
+	color: #4e4d4b;
+}
+
 .moviePoster{
-	height:70vh;
+	height:67vh;
 	width:auto;	
 	
+}
+
+.tableHeader{
+	text-align:left;
+	vertical-align:top;
+	color: #000000;
+	font-size: 2vh;
+	padding-left:1.2vw;
+	
+}
+.tableContent{
+	text-align:left;
+	font-weight: 500;
+	vertical-align:top;
+	color: #000000;
+	font-size: 2vh;
+	padding-left:1.2vw;
+}
+
+
+.anouncer{
+	padding-top:4vh;
+	padding-bottom:4vh;
+	font-size: 36px;
+	font-size: 150%;
+	font-weight: 500;
 }
 
 footer {
