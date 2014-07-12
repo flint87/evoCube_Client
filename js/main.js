@@ -287,7 +287,7 @@ function loadFile() {
 			trailers[u].director + "</p></td></tr><tr><td class=\"tableHeader\"><p>Schausp.:</p></td><td class=\"tableContent\"><p>";
 
 			for (z = 0; z < trailers[u].actors.length; z++) {
-				if(z !== trailers[u].mood.length - 1){
+				if(z !== trailers[u].actors.length - 1){
 					innerContent = innerContent + trailers[u].actors[z] + ", ";
 				}else{
 					innerContent = innerContent + trailers[u].actors[z];

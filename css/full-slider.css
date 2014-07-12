@@ -39,7 +39,7 @@ html, body {
 
 .tableHeader{
 	text-align:left;
-	font-weight: bold
+	font-weight: bold;
 	vertical-align:top;
 	color: #000000;
 	font-size: 2vh;
@@ -48,7 +48,7 @@ html, body {
 }
 .tableContent{
 	text-align:left;
-	font-weight: bold
+	font-weight: bold;
 	vertical-align:top;
 	color: #000000;
 	font-size: 2vh;
