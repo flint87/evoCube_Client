@@ -7,4 +7,5 @@ libEGL.dll
 icudt.dll
 package.json
 clientConfig.json
+videoClientLog.csv
 
