@@ -302,9 +302,7 @@ function loadFile() {
 				
 			} else {
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\"></li>");
-				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\">" + innerContent + "<p class=\"anouncer\">Ticketermäßigung für alle Teilnehmer</p></div></div>");
-				console.log("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\"></li>");
-				console.log("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Ticketermäßigung für alle Teilnehmer</p></div></div></div>");
+				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Ticketermäßigung für alle Teilnehmer</p></div></div></div>");
 			}
 			
 		}
