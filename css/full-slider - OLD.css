@@ -1,0 +1,92 @@
+html, body {
+	height:100%;
+	
+}
+
+div.myCarouselContent {
+	position: absolute;
+	padding-right: 12%;
+    padding-left: 12%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    display:block;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+    text-align: right;
+  	width: 100%;
+  	height: 100vh;
+  	
+
+}
+
+.carousel,
+.item,
+.active {
+	height:100%;
+}
+
+.carousel-inner {
+	height:100%;
+}
+
+.fill {
+	width:100%;
+	height:100%;
+	background-position: center;
+	background-size: cover;
+}
+
+.section {
+	margin: 50px 0;
+}
+
+.tableHeader{
+	display: inline-block;
+	width: 35%;
+	text-align:left;
+	vertical-align:top;
+	color: #FFFFFF;
+	padding-left:13px;
+	font-size: 35px;
+	font-size: 150%;
+	
+}
+.tableContent{
+	display: inline-block;
+	width: 65%;
+	text-align:left;
+	font-weight: 500;
+	vertical-align:top;
+	color: #000000;
+	font-size: 36px;
+	font-size: 150%;
+}
+.imageDiv{
+	text-align:center;
+	vertical-align:top;
+	width:45%;
+}
+.moviePoster{
+	width:100%;
+	min-width: 200px;
+	height:auto;
+	display: inline-block;
+}
+
+.movieTitleHeader{
+	text-align:center;
+	padding-bottom:20px;
+	color: #4e4d4b;
+}
+.anouncer{
+	text-align:center;
+	padding-top:10px;
+		font-size: 36px;
+	font-size: 150%;
+	font-weight: 500;
+}
+
+
+footer {
+	margin: 50px 0;
+}

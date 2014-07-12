@@ -298,14 +298,15 @@ function loadFile() {
 
 			if (u === 0) {
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\" class=\"active\"></li>");
-				$("#carouselItems").append("<div class=\"item active\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\">" + innerContent + "<p class=\"anouncer\">Ticketermäßigung für alle Teilnehmer</p></div></div>");
+				$("#carouselItems").append("<div class=\"item active\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Ticketermäßigung für alle Teilnehmer</p></div></div></div>");
+				
 			} else {
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\"></li>");
 				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\">" + innerContent + "<p class=\"anouncer\">Ticketermäßigung für alle Teilnehmer</p></div></div>");
-
+				console.log("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\"></li>");
+				console.log("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Ticketermäßigung für alle Teilnehmer</p></div></div></div>");
 			}
-			//$("#carouselItems").append("<br><h1>TEST CONTENT</h1>");
-
+			
 		}
 
 		$('.carousel').carousel({
