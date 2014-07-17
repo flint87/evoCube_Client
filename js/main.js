@@ -298,17 +298,17 @@ function loadFile() {
 
 			if (u === 0) {
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\" class=\"active\"></li>");
-				$("#carouselItems").append("<div class=\"item active\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Ticketermäßigung für alle Teilnehmer</p></div></div></div>");
+				$("#carouselItems").append("<div class=\"item active\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Feedbackfragebogen ausfüllen und Ticketermäßigung abholen</p></div></div></div>");
 				
 			} else {
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\"></li>");
-				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Ticketermäßigung für alle Teilnehmer</p></div></div></div>");
+				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Feedbackfragebogen ausfüllen und Ticketermäßigung abholen</p></div></div></div>");
 			}
 			
 		}
 
 		$('.carousel').carousel({
-			interval: 5000 //changes the speed
+			interval: 10000 //changes the speed
 		});
 
 		saveTrackingMessage(cubeLocation, "connectionEvent", "successfullyRegisteredToServer", serverIP + ":" + serverPort);
