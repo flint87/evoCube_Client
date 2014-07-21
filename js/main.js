@@ -28,6 +28,7 @@ function initClient() {
 		serverPort = config.server.portNumber;
 		cubeLocation = config.cubeLocation;
 		$("#infoTitle").html(config.welcomeMessage);
+		$("#infoTitle").html("Willkommen beim Movie Cube");
 		if (config.debug == "false") {
 			$("#playPause").hide(0);
 			$("#fullscreen").hide(0);
@@ -298,11 +299,11 @@ function loadFile() {
 
 			if (u === 0) {
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\" class=\"active\"></li>");
-				$("#carouselItems").append("<div class=\"item active\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Feedbackfragebogen ausfüllen und Ticketermäßigung abholen</p></div></div></div>");
+				$("#carouselItems").append("<div class=\"item active\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Movie Cube Feedbackfragebogen ausfüllen und 1€ Ticketermäßigung abholen!</p></div></div></div>");
 				
 			} else {
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\"></li>");
-				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Feedbackfragebogen ausfüllen und Ticketermäßigung abholen</p></div></div></div>");
+				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Movie Cube Feedbackfragebogen ausfüllen und 1€ Ticketermäßigung abholen</p></div></div></div>!");
 			}
 			
 		}
