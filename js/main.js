@@ -245,7 +245,7 @@ function loadFile() {
 		trailers = data;
 		var innerContent;
 		for (var u = 0; u < trailers.length; u++) {
-			innerContent = "<table border=\"1\"><thead><tr><th colspan=\"3\" class=\"movieTitleHeader\"><h1>" + 
+			innerContent = "<table border=\"0\"><thead><tr><th colspan=\"3\" class=\"movieTitleHeader\"><h1>" + 
 			trailers[u].movieName + "</h1></th></tr></thead><tbody><tr><td rowspan=\"9\" class=\"imageDiv\" ><img class=\"moviePoster\" src=\"" + 			
 			trailers[u].imageURL + "\"></img></td><td class=\"tableHeader\"><p>Jahr:</p></td><td class=\"tableContent\"><p>" + 
 
