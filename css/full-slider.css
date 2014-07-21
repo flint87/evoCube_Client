@@ -44,6 +44,7 @@ html, body {
 	color: #000000;
 	font-size: 2vh;
 	padding-left:1.2vw;	
+	height: 1pc;
 	
 }
 .tableContent{
@@ -52,7 +53,8 @@ html, body {
 	vertical-align:top;
 	color: #000000;
 	font-size: 2vh;
-	padding-left:1.2vw;
+	height: 1pc;
+
 }
 
 
