@@ -38,13 +38,13 @@ function initClient() {
 			$("#status").hide(0);
 		}
 		fs.readFile("./html/staticPicture.html", "utf8", function(err, data) {
-			if(error) writeLog(err);
+			if (error) writeLog(err);
 			//writeLog(data);
 			staticContent = data;
 			//writeLog("STARTING CONNECT");
-			connect();	
+			connect();
 		});
-		
+
 	});
 
 }
@@ -82,11 +82,11 @@ function connect() {
 	socket.on("reconnecting", function(nextRetry) {
 		$("#status").html("Reconnecting in " + nextRetry + " milliseconds");
 		//make sure that only one reconnecting attempt is logged
-		if(firstReconnect){
-			saveTrackingMessage(cubeLocation, "connectionEvent", "unexpectedReconnect", serverIP + ":" + serverPort); 	
+		if (firstReconnect) {
+			saveTrackingMessage(cubeLocation, "connectionEvent", "unexpectedReconnect", serverIP + ":" + serverPort);
 			firstReconnect = false;
 		}
-		
+
 	});
 	socket.on("reconnect_failed", function() {
 		$("#status").html("Reconnect failed");
@@ -235,10 +235,10 @@ function registerToServer() {
 	writeLog("Trying to register at the server");
 	socket.emit("videoClientregister", cubeLocation, function(message) {
 		if (message) {
-			if(firstConnect){
+			if (firstConnect) {
 				loadFile();
 				firstConnect = false;
-			}			
+			}
 			writeLog("Video Client successfully registered to server");
 		} else {
 			writeLog("Server not rdy at the moment. Pls try again later.");
@@ -254,62 +254,62 @@ function loadFile() {
 		trailers = data;
 		var innerContent;
 		for (var u = 0; u < trailers.length; u++) {
-			innerContent = "<table border=\"0\"><thead><tr><th colspan=\"3\" class=\"movieTitleHeader\"><h1>" + 
-			trailers[u].movieName + "</h1></th></tr></thead><tbody><tr><td rowspan=\"9\" class=\"imageDiv\" ><img class=\"moviePoster\" src=\"" + 			
-			trailers[u].imageURL + "\"></img></td><td class=\"tableHeader\"><p>Jahr:</p></td><td class=\"tableContent\"><p>" + 
+			innerContent = "<table border=\"0\"><thead><tr><th colspan=\"3\" class=\"movieTitleHeader\"><h1>" +
+				trailers[u].movieName + "</h1></th></tr></thead><tbody><tr><td rowspan=\"9\" class=\"imageDiv\" ><img class=\"moviePoster\" src=\"" +
+				trailers[u].imageURL + "\"></img></td><td class=\"tableHeader\"><p>Jahr:</p></td><td class=\"tableContent\"><p>" +
 			//"../images/cubeImage.jpg" + "\"></img></td><td class=\"tableHeader\"><p>Jahr:</p></td><td class=\"tableContent\"><p>" + 
 
-			trailers[u].year + "</p></td></tr><tr><td class=\"tableHeader\"><p>OV Name:</p></td><td class=\"tableContent\"><p>" + 
-			trailers[u].ovName + "</p></td></tr><tr><td class=\"tableHeader\"><p>OV Sprache:</p></td><td class=\"tableContent\"><p>" + 
-			trailers[u].ov;
-			
+			trailers[u].year + "</p></td></tr><tr><td class=\"tableHeader\"><p>OV Name:</p></td><td class=\"tableContent\"><p>" +
+				trailers[u].ovName + "</p></td></tr><tr><td class=\"tableHeader\"><p>OV Sprache:</p></td><td class=\"tableContent\"><p>" +
+				trailers[u].ov;
+
 
 			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\"><p>Land:</p></td><td class=\"tableContent\"><p>";
 
 			for (z = 0; z < trailers[u].country.length; z++) {
-				if(z !== trailers[u].country.length - 1){
+				if (z !== trailers[u].country.length - 1) {
 					innerContent = innerContent + trailers[u].country[z] + ",<br>";
-				}else{
+				} else {
 					innerContent = innerContent + trailers[u].country[z];
-				}				
+				}
 			}
 
 			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\"><p>Genre:</p></td><td class=\"tableContent\"><p>";
 
 			for (z = 0; z < trailers[u].genre.length; z++) {
-				if(z !== trailers[u].genre.length - 1){
+				if (z !== trailers[u].genre.length - 1) {
 					innerContent = innerContent + trailers[u].genre[z] + ",<br>";
-				}else{
+				} else {
 					innerContent = innerContent + trailers[u].genre[z];
-				}				
+				}
 			}
 
 			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\"><p>Stimmung:</p></td><td class=\"tableContent\"><p>";
 
 			for (z = 0; z < trailers[u].mood.length; z++) {
-				if(z !== trailers[u].mood.length - 1){
+				if (z !== trailers[u].mood.length - 1) {
 					innerContent = innerContent + trailers[u].mood[z] + ", ";
-				}else{
+				} else {
 					innerContent = innerContent + trailers[u].mood[z];
-				}				
+				}
 			}
 
-			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\"><p>Regisseur:</p></td><td class=\"tableContent\"><p>" + 
-			trailers[u].director + "</p></td></tr><tr><td class=\"tableHeader\"><p>Schausp.:</p></td><td class=\"tableContent\"><p>";
+			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\"><p>Regisseur:</p></td><td class=\"tableContent\"><p>" +
+				trailers[u].director + "</p></td></tr><tr><td class=\"tableHeader\"><p>Schausp.:</p></td><td class=\"tableContent\"><p>";
 
 			for (z = 0; z < trailers[u].actors.length; z++) {
-				if(z !== trailers[u].actors.length - 1){
+				if (z !== trailers[u].actors.length - 1) {
 					innerContent = innerContent + trailers[u].actors[z] + ", ";
-				}else{
+				} else {
 					innerContent = innerContent + trailers[u].actors[z];
-				}				
+				}
 			}
-			innerContent = innerContent + "</p></td></tr><tr><td colspan=\"2\" class=\"tableContent\" style=\"text-align:center; width:100%\"><p> " + 
-			trailers[u].available + "</p></td></tr></tbody></table>";
+			innerContent = innerContent + "</p></td></tr><tr><td colspan=\"2\" class=\"tableContent\" style=\"text-align:center; width:100%\"><p> " +
+				trailers[u].available + "</p></td></tr></tbody></table>";
 
-			
+
 			if (u === 0) {
-				
+
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\" class=\"active\"></li>");
 				$("#carouselItems").append("<div class=\"item active\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Movie Cube Feedbackfragebogen ausfüllen und 1€ Ticketermäßigung abholen!</p></div></div></div>");
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"14\" class=\"active\"></li>");
@@ -320,12 +320,13 @@ function loadFile() {
 
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\"></li>");
 				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Movie Cube Feedbackfragebogen ausfüllen und 1€ Ticketermäßigung abholen</p></div></div></div>!");
-			}
-			
-			
-			
+				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"14\" class=\"active\"></li>");
+				$("#carouselItems").append(staticContent);
 
-			
+			}
+
+
+
 		}
 
 		$('.carousel').carousel({
