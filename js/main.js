@@ -21,6 +21,8 @@ var trailers;
 var firstConnect = true;
 var firstReconnect = true;
 
+var staticContent = "";
+
 function initClient() {
 	fs.readFile('./clientConfig.json', 'utf-8', function(error, contents) {
 		var config = JSON.parse(contents);
@@ -35,7 +37,14 @@ function initClient() {
 			$("#kiosk").hide(0);
 			$("#status").hide(0);
 		}
-		connect();
+		fs.readFile("./html/staticPicture.html", "utf8", function(err, data) {
+			if(error) writeLog(err);
+			//writeLog(data);
+			staticContent = data;
+			//writeLog("STARTING CONNECT");
+			connect();	
+		});
+		
 	});
 
 }
@@ -248,6 +257,7 @@ function loadFile() {
 			innerContent = "<table border=\"0\"><thead><tr><th colspan=\"3\" class=\"movieTitleHeader\"><h1>" + 
 			trailers[u].movieName + "</h1></th></tr></thead><tbody><tr><td rowspan=\"9\" class=\"imageDiv\" ><img class=\"moviePoster\" src=\"" + 			
 			trailers[u].imageURL + "\"></img></td><td class=\"tableHeader\"><p>Jahr:</p></td><td class=\"tableContent\"><p>" + 
+			//"../images/cubeImage.jpg" + "\"></img></td><td class=\"tableHeader\"><p>Jahr:</p></td><td class=\"tableContent\"><p>" + 
 
 			trailers[u].year + "</p></td></tr><tr><td class=\"tableHeader\"><p>OV Name:</p></td><td class=\"tableContent\"><p>" + 
 			trailers[u].ovName + "</p></td></tr><tr><td class=\"tableHeader\"><p>OV Sprache:</p></td><td class=\"tableContent\"><p>" + 
@@ -297,14 +307,24 @@ function loadFile() {
 			innerContent = innerContent + "</p></td></tr><tr><td colspan=\"2\" class=\"tableContent\" style=\"text-align:center; width:100%\"><p> " + 
 			trailers[u].available + "</p></td></tr></tbody></table>";
 
+			
 			if (u === 0) {
+				
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\" class=\"active\"></li>");
 				$("#carouselItems").append("<div class=\"item active\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Movie Cube Feedbackfragebogen ausfüllen und 1€ Ticketermäßigung abholen!</p></div></div></div>");
-				
+				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"14\" class=\"active\"></li>");
+				$("#carouselItems").append(staticContent);
+				//writeLog(staticContent);
+
 			} else {
+
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\"></li>");
 				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Movie Cube Feedbackfragebogen ausfüllen und 1€ Ticketermäßigung abholen</p></div></div></div>!");
 			}
+			
+			
+			
+
 			
 		}
 
