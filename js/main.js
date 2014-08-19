@@ -40,6 +40,7 @@ function initClient() {
 		fs.readFile("./html/staticPicture.html", "utf8", function(err, data) {
 			if (error) writeLog(err);
 			//writeLog(data);
+			//staticContent = jQuery.parseHTML(data);
 			staticContent = data;
 			//writeLog("STARTING CONNECT");
 			connect();
@@ -321,10 +322,10 @@ function loadFile() {
 			} else {
 
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\"></li>");
-				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Movie Cube Feedbackfragebogen ausfüllen und 1€ Ticketermäßigung abholen</p></div></div></div>!");
+				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Movie Cube Feedbackfragebogen ausfüllen und 1€ Ticketermäßigung abholen!</p></div></div></div>");
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"14\" class=\"active\"></li>");
 				$("#carouselItems").append(staticContent);
-
+				
 			}
 
 		}
