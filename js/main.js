@@ -215,15 +215,17 @@ function togglePause() {
 }
 
 function playSpecificTrailer(trailerInternalName, trailerType) {
-	writeLog("CLIENT WANTS TO PLAY: " + trailerInternalName + " " + trailerType);
+	
 	vlc.playlist.clear();
 	for (var i = 0; i < trailers.length; i++) {
 		if (trailers[i].interalName == trailerInternalName) {
 			if (trailerType == "dt") {
 				vlc.playlist.add(trailers[i].urlDE, trailers[i].movieName, "");
+				writeLog("CLIENT WANTS TO PLAY: " + trailerInternalName + " " + trailerType + " " + trailers[i].urlDE);
 			}
 			if (trailerType == "ov") {
 				vlc.playlist.add(trailers[i].urlOV, trailers[i].movieName, "");
+				writeLog("CLIENT WANTS TO PLAY: " + trailerInternalName + " " + trailerType + " " + trailers[i].urlOV);
 			}
 		}
 	}
@@ -325,12 +327,12 @@ function loadFile() {
 
 			}
 
-
-
 		}
 
+		$(".staticCubeImg").attr("src", "../images/cube_" + cubeLocation + ".jpg");
+
 		$('.carousel').carousel({
-			interval: 10000 //changes the speed
+			interval: 25000 //changes the speed
 		});
 
 		saveTrackingMessage(cubeLocation, "connectionEvent", "successfullyRegisteredToServer", serverIP + ":" + serverPort);
