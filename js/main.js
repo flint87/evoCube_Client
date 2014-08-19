@@ -287,7 +287,7 @@ function loadFile() {
 				}
 			}
 
-			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\"><p>Stimmung:</p></td><td class=\"tableContent\"><p>";
+			innerContent = innerContent + "</p></td></tr><tr><td class=\"tableHeader\" style=\"display:none\"><p>Stimmung:</p></td><td class=\"tableContent\" style=\"display:none\"><p>";
 
 			for (z = 0; z < trailers[u].mood.length; z++) {
 				if (z !== trailers[u].mood.length - 1) {
