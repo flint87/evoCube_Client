@@ -316,21 +316,21 @@ function loadFile() {
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\" class=\"active\"></li>");
 				$("#carouselItems").append("<div class=\"item active\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Movie Cube Feedbackfragebogen ausfüllen und 1€ Ticketermäßigung abholen!</p></div></div></div>");
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"14\" class=\"active\"></li>");
-				$("#carouselItems").append(staticContent);
+				//$("#carouselItems").append(staticContent);
 				//writeLog(staticContent);
 
 			} else {
 
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"" + u + "\"></li>");
-				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<p class=\"anouncer\">Movie Cube Feedbackfragebogen ausfüllen und 1€ Ticketermäßigung abholen!</p></div></div></div>");
+				$("#carouselItems").append("<div class=\"item\"><div class=\"fill myCarouselContent\" style=\"background-color:#CCCCCC;\"><div class=\"carousel-caption\">" + innerContent + "<img id=\"\" class=\"logos\" src=\"../images/kiZ_logo.png\"></img> <img id=\"\" class=\"logos\" src=\"../images/evolaris_logo.gif\"></img></div></div></div>");
 				$("#movieCarousel").append("<li data-target=\"#myCarousel\" data-slide-to=\"14\" class=\"active\"></li>");
-				$("#carouselItems").append(staticContent);
+				//$("#carouselItems").append(staticContent);
 				
 			}
 
 		}
 
-		$(".staticCubeImg").attr("src", "../images/cube_" + cubeLocation + ".jpg");
+		//$(".staticCubeImg").attr("src", "../images/cube_" + cubeLocation + ".jpg");
 
 		$('.carousel').carousel({
 			interval: 25000 //changes the speed

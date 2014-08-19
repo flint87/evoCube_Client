@@ -73,6 +73,12 @@ html, body {
 	
 }
 
+.logos{
+	height:2.5vh;
+	width:auto;
+	text-align: left;	
+}
+
 
 footer {
 	margin: 50px 0;
